@@ -20,4 +20,6 @@ The UI calls `api.projects()` / `api.tasks()` for refreshes and individual CRUD 
 
 ## Configuration
 
-Required browser variables are `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`. Do not commit `.env`; use `.env.example` as the template.
+The preferred browser variables are `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`. For the Vercel/Supabase integration, the client also falls back to `NEXT_PUBLIC_SUPABASE_URL`, then `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, then `NEXT_PUBLIC_SUPABASE_ANON_KEY` for the key. If both naming schemes are configured, the Vite variables take precedence. `vite.config.ts` allows both prefixes through to the client build.
+
+Do not commit `.env` or put a secret/service-role key in any browser-exposed variable. Use `.env.example` as the local template.

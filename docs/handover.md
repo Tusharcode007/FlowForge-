@@ -15,7 +15,11 @@ This is a deadline-focused FlowForge MVP: a Supabase-backed project execution ap
 
 ## External blockers / not verified
 
-The original repository had no supplied environment configuration, so live sign-in, database persistence, and RLS behavior were not exercised. SQL has not been run against a hosted project. Full task title/description/due-date editing is not yet exposed in the UI.
+The production Vercel project now has `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` configured from the local environment, and the latest production deployment is Ready. The canonical URL returned HTTP 200. This is a serving check only: live sign-in, database persistence, and RLS behavior have not been verified here. SQL application against the hosted project still needs confirmation. Full task title/description/due-date editing is not yet exposed in the UI.
+
+The Supabase client supports the Vite variable names first, followed by the Vercel/Supabase integration fallbacks `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, and `NEXT_PUBLIC_SUPABASE_ANON_KEY`. Only public anon/publishable credentials belong in browser variables.
+
+Production URL: [https://flow-forge-neon-nine.vercel.app](https://flow-forge-neon-nine.vercel.app)
 
 ## Files created
 
@@ -31,11 +35,11 @@ The original repository had no supplied environment configuration, so live sign-
 ## Safe continuation
 
 1. Apply `supabase/schema.sql` in the correct Supabase project.
-2. Create `.env` from `.env.example`, add public URL/key, and run `npm run dev`.
+2. Create `.env.local` from `.env.example`, add public URL/key, and run `npm run dev`.
 3. Sign up, create a project and task, reload, and verify records persist; then test a second account cannot access the first account’s IDs.
 
 ## Next highest-value work
 
 1. Add a full task details edit dialog and refresh the documentation status.
 2. Add targeted tests for progress calculations and the Supabase API layer.
-3. Deploy to a static host and configure Supabase redirect URLs.
+3. Configure Supabase redirect URLs for the production domain and verify deployed authentication, persistence, and RLS behavior.

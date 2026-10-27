@@ -27,6 +27,8 @@ It helps an individual or small team answer three practical questions: **what ar
 
 Build the production bundle with `npm run build`. Preview it with `npm run preview`.
 
+The app reads `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`. It also accepts the Vercel/Supabase integration names `NEXT_PUBLIC_SUPABASE_URL` and either `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` or `NEXT_PUBLIC_SUPABASE_ANON_KEY` as fallbacks. Prefer the Vite names when configuring the project directly.
+
 ## Features
 
 - Email/password sign-up and sign-in via Supabase Auth
@@ -64,11 +66,13 @@ docs/                Architecture, feature status, code map, and handover notes
 3. Add these environment variables in **Settings → Environment Variables**:
    - `VITE_SUPABASE_URL`
    - `VITE_SUPABASE_ANON_KEY`
-   The connected Supabase integration also provides compatible `NEXT_PUBLIC_SUPABASE_…` variables automatically.
+   If using the Vercel/Supabase integration, the app also accepts `NEXT_PUBLIC_SUPABASE_URL` with `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` or `NEXT_PUBLIC_SUPABASE_ANON_KEY`. Explicit Vite variables take precedence when both sets are present.
 4. Deploy. After it finishes, copy the Vercel URL.
 5. In Supabase go to **Authentication → URL Configuration** and add that URL to **Redirect URLs**. Set it as the Site URL if this is your production app.
 
 Never add a Supabase secret/service-role key to Vercel’s frontend variables.
+
+The configured production deployment is [flow-forge-neon-nine.vercel.app](https://flow-forge-neon-nine.vercel.app). Its latest deployment returned HTTP 200; this confirms the site is serving, but does not by itself verify sign-in, database access, or RLS behavior.
 
 ## Documentation
 
