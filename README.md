@@ -64,6 +64,7 @@ docs/                Architecture, feature status, code map, and handover notes
 3. Add these environment variables in **Settings → Environment Variables**:
    - `VITE_SUPABASE_URL`
    - `VITE_SUPABASE_ANON_KEY`
+   The connected Supabase integration also provides compatible `NEXT_PUBLIC_SUPABASE_…` variables automatically.
 4. Deploy. After it finishes, copy the Vercel URL.
 5. In Supabase go to **Authentication → URL Configuration** and add that URL to **Redirect URLs**. Set it as the Site URL if this is your production app.
 
